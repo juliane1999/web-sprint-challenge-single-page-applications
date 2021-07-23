@@ -37,7 +37,7 @@ export default function Form (props) {
             </div>
            
 
-        <div>
+        <div id='name-input'>
             <label>Name
                 <input
                     value={values.name}
