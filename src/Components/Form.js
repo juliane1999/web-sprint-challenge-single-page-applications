@@ -24,7 +24,7 @@ export default function Form (props) {
     }
 
     return (
-        <form className='pizza-form' onSubmit={onSubmit}>
+        <form id='pizza-form' onSubmit={onSubmit}>
             <div className='submit'>
                 <h2>Create Your Pizza</h2>
 
@@ -48,7 +48,7 @@ export default function Form (props) {
             </label>
         </div>
            
-        <div className='size-dropdown'> <h3>Choose a Size</h3>
+        <div id='size-dropdown'> <h3>Choose a Size</h3>
         <label>Size
           <select
             value={values.size}
@@ -123,7 +123,7 @@ export default function Form (props) {
         </div>
         
 
-        <div className='special-text'> <h3>Special Instructions:</h3>
+        <div id='special-text'> <h3>Special Instructions:</h3>
         <label>Instructions
             <input
             value={values.instructions}
@@ -134,7 +134,7 @@ export default function Form (props) {
         </label>
         </div>
 
-        <button className='order-button' disabled={disabled}>Add to Order</button>
+        <button id='order-button' disabled={disabled}>Add to Order</button>
        
         </form>
     )
