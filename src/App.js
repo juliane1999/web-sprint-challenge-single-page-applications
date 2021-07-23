@@ -1,14 +1,27 @@
 import React, {useState,useEffect} from "react";
+import { Redirect,Route,Switch } from "react-router-dom";
+import axios from 'axios'
 import Form from './Components/Form'
-import Confirmation from './Components/Confirmation'
 import Schema from './Components/Schema'
+import * as yup from 'yup'
+
+const initialFormValues ={
+
+}
+
 
 const App = () => {
   return (
-    <>
-      <h1>Pizza Order</h1>
+
+    <div className='App'>
+      <header><h1>Pizza Order</h1></header>
+
       
-    </>
+    
+   
+
+    </div>
+    
   );
 };
 export default App;
