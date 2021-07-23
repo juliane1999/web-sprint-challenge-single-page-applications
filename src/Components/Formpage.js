@@ -1,8 +1,8 @@
 import React, {useState,useEffect} from "react";
-import { BrowserRouter as Router,Route,Switch } from "react-router-dom";
+import {Link } from "react-router-dom";
 import axios from 'axios'
-import Form from './Components/Form'
-import Schema from './Components/Schema'
+import Form from './Form'
+import Schema from './Schema'
 import {reach} from 'yup'
 
 
@@ -32,12 +32,23 @@ const initialFormValues ={
   const initialDisabled = true
   
   
-  const formPage = () => {
+  const FormPage = () => {
     
     const [pizzas, setPizzas] = useState(initialPizza)          
     const [formValues, setFormValues] = useState(initialFormValues) 
     const [formErrors, setFormErrors] = useState(initialFormErrors) 
     const [disabled, setDisabled] = useState(initialDisabled)    
+
+      const formSubmit = () => {
+        const newOrder = {
+          name: formValues.name.trim(),
+          size: formValues.size.trim(),
+          sauce: formValues.sauce.trim(),
+          instructions: formValues.instructions.trim(),
+        }
+        postNewPizza(newOrder)
+      }
+    
   
     const getOrders = () => {
       axios.get('https://reqres.in/api/orders')
@@ -76,48 +87,29 @@ const initialFormValues ={
         [name]: value
       })
     }
-  
-    const formSubmit = () => {
-      const newOrder = {
-        name: formValues.name.trim(),
-        size: formValues.size.trim(),
-        sauce: formValues.sauce.trim(),
-        instructions: formValues.instructions.trim(),
-      }
-      postNewPizza(newOrder)
-    }
-  
+    
+    useEffect(() => {
+        getOrders()
+      }, [])
+    
     useEffect(() => {
       Schema.isValid(formValues)
       .then(valid => setDisabled(!valid))
     }, [formValues])
 
     return (
-
-        <div className='App'>
-          <header><h1>Pizza Order</h1></header>
-        
-    
-        
-          <Form
-         values={formValues}
-         change={inputChange}
-         submit={formSubmit}
-         disabled={disabled}
-         errors={formErrors}
-         />
-    
-        
-          
-        
-       
-    
+        <div>
+          <Link to={'/pizza'}>
+          <Form 
+            values={formValues}
+            change={inputChange}
+            submit={formSubmit}
+            disbled={disabled}
+            errors={formErrors}
+          />
+          </Link>
         </div>
-        
       );
-    
-  
-  
-  }  
+    };
 
-  export default formPage;
+  export default FormPage;

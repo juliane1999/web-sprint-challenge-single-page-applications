@@ -9,8 +9,6 @@ export default function Form (props) {
     disabled,
     errors,
     } = props
-
-
     
     const onSubmit = (evt) => {
         evt.preventDefault()

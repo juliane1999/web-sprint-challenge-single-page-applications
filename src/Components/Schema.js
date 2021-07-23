@@ -12,6 +12,8 @@ const formSchema = yup.object().shape({
     sauce:yup
     .string()
     .oneOf(['marinara', 'bbq'], 'sauce is required'),
+    instructions:yup
+    .string(),
 
     cheese:yup.boolean(),
     pepperoni:yup.boolean(),
@@ -22,4 +24,3 @@ const formSchema = yup.object().shape({
 )
 
 export default formSchema;
-
