@@ -1,5 +1,5 @@
 import React from "react";
-import { Route,Switch } from "react-router-dom";
+import { BrowserRouter as Router,Route,Switch,Link } from "react-router-dom";
 import FormPage from "./Components/Formpage";
 import Home from './Components/Home'
 
@@ -10,15 +10,21 @@ export default function App () {
 
 
   return (
-
-    <div className='App'>
+    <Router>
+      <div>
       <nav>
       <h1>Lambda Eats</h1>
-      <div className='nav-links'>
+      <Link to ='/'>Home</Link>
+      <Link to ='/pizza/pizza-form'>Order Pizza</Link>
+      </nav>
+
+    
+
+     
 
       <Switch>
 
-        <Route exact path='/pizza/:order-pizza'>
+        <Route path='/pizza'>
           <FormPage />
         </Route>
 
@@ -30,8 +36,8 @@ export default function App () {
       
 
     </div>
-    </nav>
-    </div>
+    </Router>
+ 
 
   )}
  

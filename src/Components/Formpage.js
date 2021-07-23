@@ -50,28 +50,28 @@ const initialFormValues ={
       }
     
   
-    const getOrders = () => {
-      axios.get('https://reqres.in/api/orders')
-      .then(res => {
-        setPizzas(res.data)
-        console.log(res.data)
+      const getOrders = () => {
+        axios.get('https://reqres.in/api/orders')
+        .then(res => {
+          setPizzas(res.data)
+          console.log(res.data)
+          .catch(err => {
+            console.log(err)
+          })
+        })
+      }
+    
+      const postNewPizza = newOrder => {
+        axios.post('https://reqres.in/api/users', newOrder)
+        .then(res => {
+          setPizzas([res.data,...pizzas])
+          setFormValues(initialFormValues)
+        })
         .catch(err => {
           console.log(err)
         })
-      })
-    }
-  
-    const postNewPizza = newOrder => {
-      axios.post('https://reqres.in/api/users', newOrder)
-      .then(res => {
-        setPizzas([res.data,...pizzas])
-        setFormValues(initialFormValues)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-      .finally(() => {})
-    }
+        .finally(() => {})
+      }
   
     const validate = (name,value) => {
       reach(Schema,name)
