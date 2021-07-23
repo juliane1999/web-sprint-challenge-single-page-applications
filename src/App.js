@@ -3,9 +3,10 @@ import { Redirect,Route,Switch } from "react-router-dom";
 import axios from 'axios'
 import Form from './Components/Form'
 import Schema from './Components/Schema'
-import * as yup from 'yup'
+import {reach} from 'yup'
 
 const initialFormValues ={
+  name:'',
   //dropdown
   size:'',
   //radio
@@ -20,6 +21,7 @@ const initialFormValues ={
 }
 
 const initialFormErrors = {
+  name:'',
   size:'',
   sauce:'',
   instructions:'',
@@ -60,8 +62,7 @@ const App = () => {
   }
 
   const validate = (name,value) => {
-    yup
-    .reach(Schema,name)
+    reach(Schema,name)
     .validate(value)
     .then((valid) => setFormErrors({...formErrors,[name]: ''}))
     .catch(err => setFormErrors({...formErrors,[name]: err.errors[0]}))

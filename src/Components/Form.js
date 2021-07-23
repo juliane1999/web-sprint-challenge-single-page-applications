@@ -28,17 +28,27 @@ export default function Form (props) {
             <div className='submit'>
                 <h2>Create Your Pizza</h2>
 
-                <button disabled={disabled}>submit</button>
-
                 <div className='errors'>
+                <div>{errors.name}</div>
                 <div>{errors.size}</div>
                 <div>{errors.sauce}</div>
                 <div>{errors.instructions}</div>
                 </div>
             </div>
            
+
+        <div>
+            <label>Name
+                <input
+                    value={values.name}
+                    onChange={onChange}
+                    name='name'
+                    type='text'
+                />
+            </label>
+        </div>
            
-        <div> <h3>Choose a Size</h3>
+        <div className='size-dropdown'> <h3>Choose a Size</h3>
         <label>Size
           <select
             value={values.size}
@@ -46,8 +56,8 @@ export default function Form (props) {
             name='size'
             >
             <option value=''>- Select an option -</option>
-            <option value='12in'>12''</option>
-            <option value='24in'>24''</option>
+            <option value='small'>Small</option>
+            <option value='large'>Large</option>
           </select>
         </label>
         </div>
@@ -113,7 +123,7 @@ export default function Form (props) {
         </div>
         
 
-        <div> <h3>Special Instructions:</h3>
+        <div className='special-text'> <h3>Special Instructions:</h3>
         <label>Instructions
             <input
             value={values.instructions}
@@ -123,6 +133,8 @@ export default function Form (props) {
             />
         </label>
         </div>
+
+        <button className='order-button' disabled={disabled}>Add to Order</button>
        
         </form>
     )
